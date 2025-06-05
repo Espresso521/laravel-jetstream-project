@@ -1,5 +1,3 @@
-# Laravel + Breeze + React 開発環境
-
 本プロジェクトは **Laravel + Breeze + React + Vite** をベースに構築した SPA (Single Page Application) 開発環境です。  
 Docker により、チーム全員が簡単に同一環境で開発可能です 🚀。
 
@@ -47,3 +45,16 @@ npm run dev
 ```
 5️⃣ ブラウザで確認：
 http://localhost:8000
+
+✨ 効果イメージ： 
+---
+
+<img width="720" alt="截屏2025-06-03 20 01 31" src="https://github.com/user-attachments/assets/9dd72f73-21b8-4a75-af41-9eb6fa84bdd0" />
+
+<img width="720" alt="截屏2025-06-03 20 44 33" src="https://github.com/user-attachments/assets/26a7f922-d1ef-49d0-99d8-64191848b734" />
+
+<img width="720" alt="截屏2025-06-04 12 01 51" src="https://github.com/user-attachments/assets/36318a89-da6f-46ff-9f21-6ac113f86bbc" />
+
+<img width="720" alt="截屏2025-06-04 11 59 04" src="https://github.com/user-attachments/assets/2c25d6b8-bad0-40fe-98b1-8d45f53a30e4" />
+
+
