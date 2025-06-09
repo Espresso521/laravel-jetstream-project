@@ -59,7 +59,9 @@ const DashPage = () => {
                                 width: '100%',
                                 padding: '10px',
                                 marginBottom: '5px',
-                                backgroundColor: selectedMainMenuId === menu.MENUID ? '#007bff' : '#f0f0f0',
+                                backgroundColor: menu.COLORCHANGEFLG === '1' 
+                                    ? ' #dc3545' 
+                                    : (selectedMainMenuId === menu.MENUID ? ' #007bff' : ' #f0f0f0'),
                                 color: selectedMainMenuId === menu.MENUID ? '#fff' : '#000',
                                 border: 'none',
                                 cursor: 'pointer',
@@ -82,7 +84,7 @@ const DashPage = () => {
                         style={{
                             width: '100%',
                             padding: '10px',
-                            backgroundColor: '#dc3545',
+                            backgroundColor: ' #00008B',
                             color: '#fff',
                             border: 'none',
                             cursor: 'pointer'
