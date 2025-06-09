@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ET_AUTHORITY', function (Blueprint $table) {
-            $table->integer('AUTHORITYID')->primary();
-            $table->string('AUTHORITYNAME', 40)->nullable();
+        Schema::create('ET_MENU', function (Blueprint $table) {
+            $table->integer('MENU_ID')->primary();
+            $table->string('MENU_NAME', 40)->nullable();
+            $table->string('CAPTION', 50)->nullable();
+            $table->string('COLOR_CHANGE_FLG', 1)->nullable();
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ET_AUTHORITY');
+        Schema::dropIfExists('ET_MENU');
     }
 };
