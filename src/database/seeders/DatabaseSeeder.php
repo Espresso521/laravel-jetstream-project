@@ -20,5 +20,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(EtUserV2Seeder::class);
+        $this->call([
+            MenuSeeder::class,
+            SubMenuSeeder::class,
+            AuthorityMenuSeeder::class,
+        ]);
     }
 }

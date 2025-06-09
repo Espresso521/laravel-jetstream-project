@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('ET_AUTHORITYMENU', function (Blueprint $table) {
             $table->integer('AUTHORITYID'); // ユーザ権限Id
-            $table->integer('MENU_ID');     // メニューId
-            $table->integer('SUBMENU_ID');  // サブメニューId
+            $table->integer('MENUID');     // メニューId
+            $table->integer('SUBMENUID');  // サブメニューId
 
             // 複合主キー
-            $table->primary(['AUTHORITYID', 'MENU_ID', 'SUBMENU_ID']);
+            $table->primary(['AUTHORITYID', 'MENUID', 'SUBMENUID']);
         });
     }
 

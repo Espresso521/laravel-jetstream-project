@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ET_MENU', function (Blueprint $table) {
-            $table->integer('MENU_ID')->primary();
-            $table->string('MENU_NAME', 40)->nullable();
-            $table->string('CAPTION', 50)->nullable();
-            $table->string('COLOR_CHANGE_FLG', 1)->nullable();
+            $table->integer('MENUID')->primary();    // メニューId
+            $table->string('MENUNAME', 40)->nullable();  // メニュー名称
+            $table->string('CAPTION', 50)->nullable();   // 説明文
+            $table->string('COLORCHANGEFLG', 1)->nullable();  // 色変更フラグ
         });
     }
 
