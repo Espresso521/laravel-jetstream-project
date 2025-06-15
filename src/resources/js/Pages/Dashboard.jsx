@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import {
-  HomeIcon,
-  UsersIcon,
-  ClipboardIcon,
-  CreditCardIcon,
+  AdjustmentsHorizontalIcon,
   ChartBarIcon,
-  DocumentIcon,
+  ClipboardIcon,
   CogIcon,
+  CreditCardIcon,
+  DocumentIcon,
+  HomeIcon,
   UserIcon,
-  AdjustmentsHorizontalIcon
+  UsersIcon,
 } from '@heroicons/react/24/solid';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const iconMap = {
   1: HomeIcon,
@@ -20,7 +20,7 @@ const iconMap = {
   5: ChartBarIcon,
   6: DocumentIcon,
   7: CogIcon,
-  8: AdjustmentsHorizontalIcon
+  8: AdjustmentsHorizontalIcon,
 };
 
 const Dashboard = () => {
@@ -34,7 +34,9 @@ const Dashboard = () => {
       setMainMenus(res.data);
       if (res.data.length > 0) setSelectedMainMenuId(res.data[0].MENUID);
     });
-    axios.get('/api/sub-menu', { params: { login_user_id: 'C001' } }).then(res => setSubMenus(res.data));
+    axios
+      .get('/api/sub-menu', { params: { login_user_id: 'C001' } })
+      .then(res => setSubMenus(res.data));
   }, []);
 
   const filteredSubMenus = subMenus.filter(s => s.MENUID === selectedMainMenuId);
@@ -60,27 +62,32 @@ const Dashboard = () => {
 
       <div className="flex flex-1 overflow-hidden">
         <div className="w-75 bg-gray-800 text-white p-2 flex flex-col">
-        {mainMenus.map(menu => {
+          {mainMenus.map(menu => {
             const Icon = iconMap[menu.MENUID];
             return (
-                <button
+              <button
                 key={menu.MENUID}
                 onClick={() => {
-                    setSelectedMainMenuId(menu.MENUID);
-                    setSelectedSubMenu(null);
+                  setSelectedMainMenuId(menu.MENUID);
+                  setSelectedSubMenu(null);
                 }}
                 className={`w-full flex items-start px-4 py-2 mb-1 rounded ${
-                    selectedMainMenuId === menu.MENUID ? 'bg-blue-600 text-white' : 'hover:bg-gray-700 text-white'
+                  selectedMainMenuId === menu.MENUID
+                    ? 'bg-blue-600 text-white'
+                    : 'hover:bg-gray-700 text-white'
                 }`}
-                >
+              >
                 {Icon && <Icon className="h-5 w-5 flex-shrink-0" />}
                 <div className="ml-2 text-sm whitespace-normal break-words leading-tight">
-                    {menu.MENUNAME}
+                  {menu.MENUNAME}
                 </div>
-                </button>
+              </button>
             );
-        })}
-          <button onClick={handleLogout} className="mt-auto px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded">
+          })}
+          <button
+            onClick={handleLogout}
+            className="mt-auto px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded"
+          >
             ログアウト
           </button>
         </div>
@@ -97,7 +104,9 @@ const Dashboard = () => {
                   key={sub.SUBMENUID}
                   onClick={() => setSelectedSubMenu(sub)}
                   className={`rounded-full px-4 py-1 border ${
-                    selectedSubMenu?.SUBMENUID === sub.SUBMENUID ? 'bg-green-500 text-white' : 'bg-gray-200'
+                    selectedSubMenu?.SUBMENUID === sub.SUBMENUID
+                      ? 'bg-green-500 text-white'
+                      : 'bg-gray-200'
                   }`}
                 >
                   {sub.SUBMENUNAME}
