@@ -9,6 +9,7 @@ import {
   UserIcon,
   UsersIcon,
 } from '@heroicons/react/24/solid';
+import { usePage } from '@inertiajs/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -28,14 +29,17 @@ const Dashboard = () => {
   const [subMenus, setSubMenus] = useState([]);
   const [selectedMainMenuId, setSelectedMainMenuId] = useState(null);
   const [selectedSubMenu, setSelectedSubMenu] = useState(null);
+  const { login_user_id, user_name } = usePage().props;
 
   useEffect(() => {
-    axios.get('/api/main-menu', { params: { login_user_id: 'C001' } }).then(res => {
+    console.log('ログインユーザーID:', login_user_id);
+    console.log('ユーザー名:', user_name);
+    axios.get('/api/main-menu', { params: { login_user_id: login_user_id } }).then(res => {
       setMainMenus(res.data);
       if (res.data.length > 0) setSelectedMainMenuId(res.data[0].MENUID);
     });
     axios
-      .get('/api/sub-menu', { params: { login_user_id: 'C001' } })
+      .get('/api/sub-menu', { params: { login_user_id: login_user_id } })
       .then(res => setSubMenus(res.data));
   }, []);
 
@@ -56,7 +60,7 @@ const Dashboard = () => {
         <div className="text-lg font-bold">特定健診・特定保険指導システム</div>
         <div className="flex items-center gap-2">
           <UserIcon className="h-5 w-5 text-white" />
-          <span className="text-sm">デモユーザー</span>
+          <span className="text-sm">{user_name}</span>
         </div>
       </div>
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\EtUserV2;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,12 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $etUser = EtUserV2::first();
+    //dd($etUser->toArray());
+    return Inertia::render('Dashboard',[
+        'login_user_id' => $etUser?->CHARGEID ?? '',
+        'user_name' => $etUser?->CHARGE ?? '',
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
