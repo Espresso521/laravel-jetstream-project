@@ -1,9 +1,11 @@
 import CommonSubPage from './CommonSubPage';
+import LoginForHealthCheck from './Preparation/LoginForHealthCheck';
+import LoginForSpecailHealthCheck from './Preparation/LoginForSpecialHealthCheck';
 
 const pageComponentMap = {
   1: {
-    1: CommonSubPage,
-    2: CommonSubPage,
+    1: LoginForHealthCheck,
+    2: LoginForSpecailHealthCheck,
     3: CommonSubPage,
     4: CommonSubPage,
     5: CommonSubPage,

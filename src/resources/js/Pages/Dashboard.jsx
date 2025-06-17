@@ -121,18 +121,15 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col p-4 overflow-auto">
-            <div className="flex-1 bg-gray-800 text-white p-2 rounded shadow">
-              <h2 className="text-lg font-semibold mb-4">SubMenu表示の画面</h2>
-              {SelectedPage ? (
-                <SelectedPage
-                  mainmenu={mainMenus.find(m => m.MENUID === selectedMainMenuId)?.MENUNAME}
-                  submenu={selectedSubMenu.SUBMENUNAME}
-                />
-              ) : (
-                <p>メニューを選択してください。</p>
-              )}
-            </div>
+          <div className="flex-1 bg-gray-800 text-white p-2 rounded shadow">
+            {SelectedPage ? (
+              <SelectedPage
+                mainmenu={mainMenus.find(m => m.MENUID === selectedMainMenuId)?.MENUNAME}
+                submenu={selectedSubMenu.SUBMENUNAME}
+              />
+            ) : (
+              <p>メニューを選択してください。</p>
+            )}
           </div>
         </div>
       </div>
