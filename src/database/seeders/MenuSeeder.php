@@ -50,7 +50,7 @@ class MenuSeeder extends Seeder
                 'MENUID' => 7,
                 'MENUNAME' => '健診管理',
                 'CAPTION' => '健診管理',
-                'COLORCHANGEFLG' => '1', 
+                'COLORCHANGEFLG' => '1',
             ],
             [
                 'MENUID' => 8,
@@ -58,6 +58,18 @@ class MenuSeeder extends Seeder
                 'CAPTION' => '環境設定',
                 'COLORCHANGEFLG' => '1',
             ],
+            // [
+            //     'MENUID' => 9,
+            //     'MENUNAME' => '国への報告（実績報告）',
+            //     'CAPTION' => '国への報告（実績報告）',
+            //     'COLORCHANGEFLG' => '0',
+            // ],
+            // [
+            //     'MENUID' => 10,
+            //     'MENUNAME' => '閲覧用報告（随時報告）',
+            //     'CAPTION' => '閲覧用報告（随時報告）',
+            //     'COLORCHANGEFLG' => '0',
+            // ],
         ]);
     }
 }
