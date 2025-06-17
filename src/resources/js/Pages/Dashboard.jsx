@@ -12,6 +12,7 @@ import {
 import { usePage } from '@inertiajs/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import pageComponentMap from './SubMenuMap';
 
 const iconMap = {
   1: HomeIcon,
@@ -30,6 +31,7 @@ const Dashboard = () => {
   const [selectedMainMenuId, setSelectedMainMenuId] = useState(null);
   const [selectedSubMenu, setSelectedSubMenu] = useState(null);
   const { login_user_id, user_name } = usePage().props;
+  const SelectedPage = pageComponentMap[selectedMainMenuId]?.[selectedSubMenu?.SUBMENUID];
 
   useEffect(() => {
     console.log('ログインユーザーID:', login_user_id);
@@ -119,14 +121,14 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="flex-1 p-6">
-            <div className="bg-gray-800 text-white p-6 rounded shadow">
+          <div className="flex-1 flex flex-col p-4 overflow-auto">
+            <div className="flex-1 bg-gray-800 text-white p-2 rounded shadow">
               <h2 className="text-lg font-semibold mb-4">SubMenu表示の画面</h2>
-              {selectedMainMenuId && selectedSubMenu ? (
-                <div>
-                  <p>MainMenu: {mainMenus.find(m => m.MENUID === selectedMainMenuId)?.MENUNAME}</p>
-                  <p>SubMenu: {selectedSubMenu.SUBMENUNAME}</p>
-                </div>
+              {SelectedPage ? (
+                <SelectedPage
+                  mainmenu={mainMenus.find(m => m.MENUID === selectedMainMenuId)?.MENUNAME}
+                  submenu={selectedSubMenu.SUBMENUNAME}
+                />
               ) : (
                 <p>メニューを選択してください。</p>
               )}
