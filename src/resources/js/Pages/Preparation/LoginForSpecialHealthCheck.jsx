@@ -7,8 +7,8 @@ const LoginForSpecailHealthCheck = () => {
         健診・保険指導機関明細入力
       </h2>
 
-      <div className="grid grid-cols-2 gap-6 bg-gray-100 p-6 rounded text-black">
-        <div className="space-y-4">
+      <div className="grid grid-cols-2 gap-6 bg-transparent p-0 rounded text-black">
+        <div className="bg-white p-4 rounded shadow border space-y-4">
           <div className="flex items-center gap-2">
             <label className="w-24">機関コード</label>
             <input className="flex-0 border rounded px-2 py-1" />
@@ -36,7 +36,7 @@ const LoginForSpecailHealthCheck = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="bg-white p-4 rounded shadow border space-y-4">
           <div>
             <label>郵便番号</label>
             <input className="w-full border rounded px-2 py-1 mt-1" />
