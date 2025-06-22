@@ -9,7 +9,6 @@ const CommonSubPage = ({ mainmenu = 'Main Menu Value', submenu = 'Sub Menu Value
         <span className="text-white whitespace-nowrap">選んだサブマーニューは：</span>
         <h4 className="text-white inline ml-2">{submenu}</h4>
       </div>
-      {/* write code here */}
     </div>
   );
 };

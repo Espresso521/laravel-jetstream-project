@@ -8,7 +8,6 @@ const CheckboxSection = () => {
 
   return (
     <div className="flex gap-4">
-      {/* 健診機関 */}
       <div className="bg-white rounded p-4 text-black w-1/2">
         <h3 className="text-base font-bold mb-4 border-l-4 border-green-500 pl-2">健診機関設定</h3>
         <div className="flex items-center gap-2 mb-2">
@@ -44,7 +43,6 @@ const CheckboxSection = () => {
         </div>
       </div>
 
-      {/* 保険指導機関 */}
       <div className="bg-white rounded p-4 text-black w-1/2">
         <h3 className="text-base font-bold mb-4 border-l-4 border-green-500 pl-2">
           保険指導機関設定
