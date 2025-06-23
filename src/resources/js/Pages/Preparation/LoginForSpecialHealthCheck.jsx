@@ -1,4 +1,3 @@
-import HealthCsvUpload from './HealthCsvUpload';
 import CheckboxSection from './SettingCheckBox';
 
 const LoginForSpecailHealthCheck = () => {
@@ -76,8 +75,6 @@ const LoginForSpecailHealthCheck = () => {
       <div className="grid grid-cols-2 gap-4 mt-6">
         <CheckboxSection />
       </div>
-
-      <HealthCsvUpload />
 
       <div className="mt-6 text-center">
         <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-900">
