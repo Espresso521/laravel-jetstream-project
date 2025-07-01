@@ -40,6 +40,9 @@ docker compose up -d
 docker compose exec app bash
 composer install
 php artisan migrate
+php artisan serve --host=0.0.0.0 --port=8000
+
+docker compose exec node bash
 npm install
 npm run dev
 ```
