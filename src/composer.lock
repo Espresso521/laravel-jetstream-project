@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4cf50480ee894ba8c2f0793a9398f46b",
+    "content-hash": "07149b67c54c064749aeb8cc7bc65320",
     "packages": [
         {
             "name": "austintoddj/canvas",
