@@ -59,7 +59,7 @@ const rest = hasFeatured ? props.posts.slice(1) : [];
           <div class="flex flex-col justify-between">
             <div>
               <p class="text-xs text-slate-500">{{ featured.date }}</p>
-              <Link :href="`/${featured.slug}`">
+              <Link :href="route('posts.show', { post: featured.slug })">
                 <h3 class="mt-3 text-2xl font-bold leading-snug hover:underline">
                   {{ featured.title }}
                 </h3>
@@ -72,7 +72,7 @@ const rest = hasFeatured ? props.posts.slice(1) : [];
             <div class="mt-6">
               <Link
                 class="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-700 transition"
-                :href="`/${featured.slug}`"
+                :href="route('posts.show', { post: featured.slug })"
               >
                 続きを読む
               </Link>
@@ -104,7 +104,7 @@ const rest = hasFeatured ? props.posts.slice(1) : [];
             </Link>
 
             <p class="mt-3 text-xs text-slate-500">{{ post.date }}</p>
-            <Link :href="`/${post.slug}`">
+            <Link :href="route('posts.show', { post: post.slug })">
               <h3 class="mt-2 text-lg font-semibold leading-snug hover:underline">
                 {{ post.title }}
               </h3>
@@ -116,7 +116,7 @@ const rest = hasFeatured ? props.posts.slice(1) : [];
             <div class="mt-4 flex justify-end">
               <Link
                 class="text-xs px-3 py-1.5 rounded-md border border-slate-300 text-slate-700 hover:bg-slate-50 transition"
-                :href="`/${post.slug}`"
+                :href="route('posts.show', { post: post.slug })"
               >
                 続きを読む
               </Link>

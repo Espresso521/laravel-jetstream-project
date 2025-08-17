@@ -2,6 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({ post: { type: Object, required: true } });
+console.log('POST FROM SERVER =>', props.post);
 </script>
 
 <template>
