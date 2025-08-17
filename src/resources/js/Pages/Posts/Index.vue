@@ -5,17 +5,20 @@ import { route } from 'ziggy-js';
 type PostCard = {
   title: string;
   slug: string;
-  summary: string;
+  summary: string | null;
   image: string | null;
   body: string;
   time: number;
   date: string;
 };
 
-const props = defineProps<{ posts: PostCard[] }>();
-const hasFeatured = props.posts && props.posts.length > 0;
-const featured = hasFeatured ? props.posts[0] : null;
-const rest = hasFeatured ? props.posts.slice(1) : [];
+const props = defineProps<{
+  featured: PostCard | null;
+  posts: PostCard[];
+}>();
+
+const featured = props.featured;
+const rest = props.posts ?? [];
 </script>
 
 <template>
@@ -129,26 +132,29 @@ const rest = hasFeatured ? props.posts.slice(1) : [];
           <article
             v-for="post in rest"
             :key="post.slug"
-            class="rounded-2xl ring-1 ring-slate-200 shadow-md shadow-slate-200/60 p-4 hover:shadow-lg hover:ring-slate-300 transition bg-[#F5F3FF]"
+            class="flex flex-col rounded-2xl ring-1 ring-slate-200 shadow-md shadow-slate-200/60 p-4 hover:shadow-lg hover:ring-slate-300 transition bg-[#F5F3FF]"
           >
-            <Link :href="route('posts.show', { post: post.slug })">
-              <img
-                class="w-full aspect-video object-cover rounded-xl"
-                :src="post.image || '/images/default_feature.jpg'"
-                alt="thumbnail"
-              />
-            </Link>
+            <div class="flex-1">
+              <Link :href="route('posts.show', { post: post.slug })">
+                <img
+                  class="w-full aspect-video object-cover rounded-xl"
+                  :src="post.image || '/images/default_feature.jpg'"
+                  alt="thumbnail"
+                />
+              </Link>
 
-            <p class="mt-3 text-xs text-slate-500">{{ post.date }}</p>
-            <Link :href="route('posts.show', { post: post.slug })">
-              <h3 class="mt-2 text-lg font-semibold leading-snug hover:underline">
-                {{ post.title }}
-              </h3>
-            </Link>
-            <p class="mt-3 text-sm leading-6 text-slate-700 line-clamp-3">
-              {{ post.summary }}
-            </p>
+              <p class="mt-3 text-xs text-slate-500">{{ post.date }}</p>
+              <Link :href="route('posts.show', { post: post.slug })">
+                <h3 class="mt-2 text-lg font-semibold leading-snug hover:underline">
+                  {{ post.title }}
+                </h3>
+              </Link>
+              <p class="mt-3 text-sm leading-6 text-slate-700 line-clamp-3">
+                {{ post.summary }}
+              </p>
+            </div>
 
+            <!-- 按钮固定在卡片底部 -->
             <div class="mt-4 flex justify-end">
               <Link
                 class="text-xs px-3 py-1.5 rounded-md border border-slate-300 text-slate-700 hover:bg-slate-50 transition"

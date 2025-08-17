@@ -16,10 +16,19 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(\Illuminate\Http\Request $request)
     {
-        $posts = Post::published()->orderBy( 'published_at', 'desc' )->get();
-        return Inertia::render( 'Posts/Index', [ 'posts' => PostResource::collection( $posts )->toArray( $request ) ] );
+        // 已发布，按 updated_at 降序
+        $posts = Post::published()->orderByDesc('updated_at')->get();
+
+        // 第一个是 featured，其余是列表
+        $featured = $posts->first();
+        $rest = $posts->skip(1)->values();
+
+        return Inertia::render('Posts/Index', [
+            'featured' => $featured ? new PostResource($featured) : null,
+            'posts'    => PostResource::collection($rest)->toArray($request),
+        ]);
     }
 
     /**
