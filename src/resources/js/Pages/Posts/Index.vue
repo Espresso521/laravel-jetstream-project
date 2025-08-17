@@ -65,9 +65,10 @@ const rest = props.posts ?? [];
         <!-- 右侧按钮 -->
         <Link
           href="/aboutme"
-          class="text-sm px-3 py-2 rounded-md border border-slate-300 text-slate-700 hover:bg-rose-100 transition bg-rose-50"
+          class="flex items-center gap-2 text-sm px-3 py-2 rounded-md border-slate-300 text-slate-700"
         >
-          私について
+          <!-- User Icon -->
+          <img :src="'/images/me.svg'" />
         </Link>
       </div>
     </header>
@@ -85,7 +86,7 @@ const rest = props.posts ?? [];
         </div>
 
         <article
-          class="grid grid-cols-1 md:grid-cols-3 gap-8 rounded-2xl shadow-xl shadow-slate-200/70 ring-1 ring-slate-200 p-4 bg-[#ECFDF5]"
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 rounded-2xl shadow-xl shadow-slate-200/70 ring-1 ring-slate-200 p-4 bg-[#F5F3FF]"
         >
           <Link class="md:col-span-2" :href="route('posts.show', { post: featured.slug })">
             <img
@@ -132,7 +133,7 @@ const rest = props.posts ?? [];
           <article
             v-for="post in rest"
             :key="post.slug"
-            class="flex flex-col rounded-2xl ring-1 ring-slate-200 shadow-md shadow-slate-200/60 p-4 hover:shadow-lg hover:ring-slate-300 transition bg-[#F5F3FF]"
+            class="flex flex-col rounded-2xl ring-1 ring-slate-200 shadow-md shadow-slate-200/60 p-4 hover:shadow-lg hover:ring-slate-300 transition bg-[#ECFDF5]"
           >
             <div class="flex-1">
               <Link :href="route('posts.show', { post: post.slug })">
