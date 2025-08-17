@@ -26,8 +26,8 @@ const rest = hasFeatured ? props.posts.slice(1) : [];
     >
       <h1 class="text-xl sm:text-2xl font-bold tracking-tight">Kotakuのブログ</h1>
       <Link
-        href="/about"
-        class="text-sm px-3 py-2 rounded-md border border-slate-300 text-slate-700 hover:bg-slate-50 transition"
+        href="/aboutme"
+        class="text-sm px-3 py-2 rounded-md border border-slate-300 text-slate-700 hover:bg-rose-100 transition bg-rose-50"
       >
         私について
       </Link>
