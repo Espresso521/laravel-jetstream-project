@@ -72,7 +72,7 @@ return [
     */
 
     'unsplash' => [
-        'access_key' => env('CANVAS_UNSPLASH_ACCESS_KEY'),
+        'access_key' => env('9uCQZmKLkKAvljHIbECqcVetu1iSloj97rftoX6Fmuw'),
     ],
 
     /*

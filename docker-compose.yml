@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel_app
+    container_name: kotaku_blog_app
     ports:
       - "8000:8000"
     volumes:
@@ -13,11 +13,11 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: laravel_db
+    container_name: kotaku_blog_db
     restart: always
     environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kotaku_blog
+      MYSQL_ROOT_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
@@ -25,7 +25,7 @@ services:
 
   node:
     image: node:18
-    container_name: laravel_node
+    container_name: kotaku_blog_node
     working_dir: /var/www
     volumes:
       - ./src:/var/www
@@ -35,7 +35,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: laravel_phpmyadmin
+    container_name: kotaku_blog_phpmyadmin
     depends_on:
       - db
     ports:
@@ -43,6 +43,6 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: password
 volumes:
   dbdata:

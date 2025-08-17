@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+
+    "useDefineForClassFields": true,
+    "strict": true,
+    "jsx": "preserve", // ✅ Vue SFC 正确设置（不要用 react-jsx）
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "noEmit": true, // 交给 Vite 构建，不输出 .js
+
+    // 可选：更严格一些
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true
+  },
+  "include": ["resources/**/*", "env.d.ts"],
+  "exclude": ["node_modules"]
+}
