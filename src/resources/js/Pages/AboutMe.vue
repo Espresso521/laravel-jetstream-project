@@ -256,16 +256,56 @@ onBeforeUnmount(() => {
       <section class="mt-8 rounded-2xl bg-white/70 ring-1 ring-slate-200 p-6">
         <h3 class="text-lg font-semibold mb-4">我在做 / 擅长</h3>
         <ul class="flex flex-wrap gap-2">
-          <li class="tag">Laravel</li>
-          <li class="tag">Vue 3</li>
-          <li class="tag">TypeScript</li>
-          <li class="tag">TailwindCSS</li>
-          <li class="tag">Inertia</li>
-          <li class="tag">Flutter</li>
-          <li class="tag">MySQL</li>
-          <li class="tag">Docker</li>
-          <li class="tag">Android</li>
-          <li class="tag">Springboot</li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            Laravel
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            Vue 3
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            TypeScript
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            TailwindCSS
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            Inertia
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            Flutter
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            MySQL
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            Docker
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            Android
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            Springboot
+          </li>
         </ul>
       </section>
 
@@ -321,8 +361,8 @@ onBeforeUnmount(() => {
       >
         <div class="relative max-w-5xl w-full">
           <img
-            :src="certs[currentIndex].src"
-            :alt="certs[currentIndex].alt || 'certificate'"
+            :src="certs[currentIndex]?.src || '/images/certs/aws.jpg'"
+            :alt="certs[currentIndex]?.alt || 'certificate'"
             class="w-full h-auto rounded-xl shadow-2xl"
           />
 
@@ -420,11 +460,6 @@ onBeforeUnmount(() => {
   75% {
     height: 10px;
   }
-}
-
-/* tag */
-.tag {
-  @apply px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200;
 }
 
 /* Lightbox 渐隐 */
