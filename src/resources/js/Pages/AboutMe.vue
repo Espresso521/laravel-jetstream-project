@@ -21,7 +21,6 @@ const togglePlay = async () => {
       isPlaying.value = false;
     }
   } catch (e) {
-    // 某些浏览器首次需用户手势，失败可在此提示或静默
     console.debug('Play blocked by browser:', e);
   }
 };
@@ -32,17 +31,92 @@ const onScroll = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true });
-  // 初始音量稍小，体验更柔和
-  if (audioRef.value) audioRef.value.volume = 0.6;
+
+  const a = audioRef.value;
+  if (a) {
+    a.volume = 0.6;
+    // 尝试自动播放
+    const tryPlay = async () => {
+      try {
+        await a.play();
+        isPlaying.value = true;
+      } catch (e) {
+        console.debug('Autoplay blocked, waiting for user gesture:', e);
+      }
+    };
+    tryPlay();
+  }
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', onScroll);
 });
+
+/* ============ 证书画廊 / Lightbox ============ */
+type CertItem = { src: string; alt?: string };
+
+const certs = ref<CertItem[]>([
+  { src: '/images/certs/aws.jpg', alt: 'Certificate 1' },
+  { src: '/images/certs/n1result.png', alt: 'Certificate 2' },
+  { src: '/images/certs/n2.jpg', alt: 'Certificate 3' },
+  { src: '/images/certs/iris.jpg', alt: 'Certificate 4' },
+]);
+
+const lightboxOpen = ref(false);
+const currentIndex = ref(0);
+
+const openLightbox = (idx: number) => {
+  currentIndex.value = idx;
+  lightboxOpen.value = true;
+};
+
+const closeLightbox = () => {
+  lightboxOpen.value = false;
+};
+
+const prev = () => {
+  currentIndex.value = (currentIndex.value - 1 + certs.value.length) % certs.value.length;
+};
+
+const next = () => {
+  currentIndex.value = (currentIndex.value + 1) % certs.value.length;
+};
+
+const onKey = (e: KeyboardEvent) => {
+  if (!lightboxOpen.value) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') prev();
+  if (e.key === 'ArrowRight') next();
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', onKey);
+});
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKey);
+});
 </script>
 
 <template>
   <div class="min-h-screen bg-gradient-to-b from-rose-50 via-white to-indigo-50 text-slate-900">
+    <!-- 返回主页（固定在左上） -->
+    <a
+      href="/"
+      class="fixed top-4 left-4 z-50 inline-flex items-center gap-2 rounded-full bg-white/90 hover:bg-white text-slate-700 px-3 py-1.5 shadow ring-1 ring-slate-200 transition"
+      aria-label="返回主页"
+    >
+      <!-- 左箭头 -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M15.5 5.5 9 12l6.5 6.5-1.5 1.5L6 12l8-8 1.5 1.5z" />
+      </svg>
+      <span class="text-xs">返回</span>
+    </a>
+
     <!-- Hero -->
     <header class="relative h-[44vh] sm:h-[56vh] overflow-hidden rounded-b-3xl shadow-sm">
       <img
@@ -112,10 +186,7 @@ onBeforeUnmount(() => {
                     aria-hidden="true"
                   >
                     <path
-                      d="M20 4H4a2 2 0 0 0-2 2v12a2
-                      2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2
-                      2 0 0 0-2-2Zm0 4-8 5L4 8V6l8
-                      5 8-5v2Z"
+                      d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"
                     />
                   </svg>
                   <span class="hidden sm:inline">kotaku20220424@gmail.com</span>
@@ -130,7 +201,6 @@ onBeforeUnmount(() => {
               aria-label="Toggle background music"
               class="group absolute bottom-4 right-4 inline-flex items-center justify-center h-12 w-12 rounded-full shadow-lg ring-1 ring-slate-200 bg-white/90 hover:bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/70"
             >
-              <!-- Play/Pause 图标 -->
               <span class="pointer-events-none">
                 <svg
                   v-if="isPlaying"
@@ -152,8 +222,6 @@ onBeforeUnmount(() => {
                   <path d="M5 3v18l15-9-15-9z" />
                 </svg>
               </span>
-
-              <!-- 迷你均衡器 -->
               <span class="ml-1 flex items-end gap-[2px] h-4">
                 <i class="eqbar" :class="{ on: isPlaying }"></i>
                 <i class="eqbar delay-1" :class="{ on: isPlaying }"></i>
@@ -161,8 +229,7 @@ onBeforeUnmount(() => {
               </span>
             </button>
 
-            <!-- 背景音乐 -->
-            <audio ref="audioRef" src="/audio/congcong.mp3" preload="none"></audio>
+            <audio ref="audioRef" src="/audio/congcong.mp3" preload="auto" autoplay loop></audio>
           </div>
         </div>
       </div>
@@ -202,6 +269,33 @@ onBeforeUnmount(() => {
         </ul>
       </section>
 
+      <!-- 证书画廊 -->
+      <section class="mt-8 rounded-2xl bg-white/70 ring-1 ring-slate-200 p-6">
+        <h3 class="text-lg font-semibold mb-4">我的证书</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <button
+            v-for="(c, idx) in certs"
+            :key="c.src"
+            type="button"
+            class="group relative aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-slate-200 bg-slate-50"
+            @click="openLightbox(idx)"
+            :aria-label="`查看 ${c.alt || '证书'}`"
+          >
+            <img
+              :src="c.src"
+              :alt="c.alt || 'certificate'"
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+            <!-- hover 遮罩 -->
+            <div
+              class="pointer-events-none absolute inset-0 bg-black/0 group-hover:bg-black/10 transition"
+            ></div>
+          </button>
+        </div>
+        <p class="mt-3 text-xs text-slate-500">点击图片可放大浏览，支持键盘 ← → 切换，Esc 退出。</p>
+      </section>
+
       <!-- 联系 -->
       <section class="mt-8 rounded-2xl bg-white/70 ring-1 ring-slate-200 p-6">
         <h3 class="text-lg font-semibold mb-3">联系我</h3>
@@ -214,6 +308,79 @@ onBeforeUnmount(() => {
     <footer class="py-10 text-center text-sm text-slate-500">
       © {{ new Date().getFullYear() }} Kotaku. All rights reserved.
     </footer>
+
+    <!-- Lightbox -->
+    <transition name="fade">
+      <div
+        v-if="lightboxOpen"
+        class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-label="证书预览"
+        @click.self="closeLightbox"
+      >
+        <div class="relative max-w-5xl w-full">
+          <img
+            :src="certs[currentIndex].src"
+            :alt="certs[currentIndex].alt || 'certificate'"
+            class="w-full h-auto rounded-xl shadow-2xl"
+          />
+
+          <!-- 关闭 -->
+          <button
+            type="button"
+            class="absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded-full bg-white/90 hover:bg-white text-slate-800 shadow"
+            aria-label="关闭预览"
+            @click="closeLightbox"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M18.3 5.71 12 12.01l-6.29-6.3-1.42 1.42 6.3 6.29-6.3 6.29 1.42 1.42 6.29-6.3 6.29 6.3 1.42-1.42-6.3-6.29 6.3-6.29z"
+              />
+            </svg>
+          </button>
+
+          <!-- 上一张 -->
+          <button
+            type="button"
+            class="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center h-11 w-11 rounded-full bg-white/90 hover:bg-white text-slate-800 shadow"
+            aria-label="上一张"
+            @click.stop="prev"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M15.5 5.5 9 12l6.5 6.5-1.5 1.5L6 12l8-8 1.5 1.5z" />
+            </svg>
+          </button>
+
+          <!-- 下一张 -->
+          <button
+            type="button"
+            class="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center h-11 w-11 rounded-full bg-white/90 hover:bg-white text-slate-800 shadow"
+            aria-label="下一张"
+            @click.stop="next"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="m8.5 5.5 6.5 6.5-6.5 6.5 1.5 1.5 8-8-8-8-1.5 1.5z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -255,9 +422,19 @@ onBeforeUnmount(() => {
   }
 }
 
-/* 技能标签 */
+/* tag */
 .tag {
   @apply px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200;
+}
+
+/* Lightbox 渐隐 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.18s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 /* 关闭动效与视差（系统偏好：减少动态） */
