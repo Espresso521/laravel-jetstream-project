@@ -18,6 +18,7 @@ use App\Http\Controllers\Blog\PostController;
 
 Route::get( '/', [ PostController::class, 'index' ] )->name( 'posts.index' );
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/aboutme', fn () => Inertia::render('AboutMe'))->name('about');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
