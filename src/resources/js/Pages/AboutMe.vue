@@ -239,7 +239,7 @@ onBeforeUnmount(() => {
     <main class="container mx-auto px-6 py-10 max-w-4xl">
       <!-- 简介 -->
       <section class="rounded-2xl bg-white/80 backdrop-blur ring-1 ring-slate-200 p-6 shadow-sm">
-        <h2 class="text-xl font-bold mb-3">关于我</h2>
+        <h2 class="text-xl font-bold mb-3">私</h2>
         <p class="leading-7 text-slate-700">
           你好，我是 Kotaku，一名喜欢折腾的全栈工程师。长期使用 Laravel / Springboot / React / Vue /
           Flutter / Android 开发， 对所有编程项目都有浓厚兴趣。现在这个站点使用
@@ -254,7 +254,7 @@ onBeforeUnmount(() => {
 
       <!-- 技能 -->
       <section class="mt-8 rounded-2xl bg-white/70 ring-1 ring-slate-200 p-6">
-        <h3 class="text-lg font-semibold mb-4">我在做 / 擅长</h3>
+        <h3 class="text-lg font-semibold mb-4">得意な技術</h3>
         <ul class="flex flex-wrap gap-2">
           <li
             class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
@@ -265,6 +265,11 @@ onBeforeUnmount(() => {
             class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
           >
             Vue 3
+          </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            React
           </li>
           <li
             class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
@@ -306,12 +311,17 @@ onBeforeUnmount(() => {
           >
             Springboot
           </li>
+          <li
+            class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
+          >
+            Jetpack Compose
+          </li>
         </ul>
       </section>
 
       <!-- 证书画廊 -->
       <section class="mt-8 rounded-2xl bg-white/70 ring-1 ring-slate-200 p-6">
-        <h3 class="text-lg font-semibold mb-4">我的证书</h3>
+        <h3 class="text-lg font-semibold mb-4">証明書</h3>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <button
             v-for="(c, idx) in certs"
