@@ -44,6 +44,7 @@ main pre.ql-syntax {
   overflow-x: auto;
   font-family: 'Fira Code', 'Courier New', monospace;
   font-size: 0.9rem;
+  font-weight: 600;
   margin: 1em 0;
   /* 避免被外层奇怪的样式覆盖 */
   white-space: pre; /* Quill 导出通常已是预格式文本 */
@@ -54,6 +55,7 @@ main pre.ql-syntax code {
   color: inherit;
   font-family: inherit;
   padding: 0;
+  font-weight: 600;
 }
 
 /* 图片整体容器 */
@@ -79,4 +81,12 @@ div.embedded_image > p {
   margin-top: 0.5em;
   text-align: center;
   line-height: 1.4;
+}
+
+main blockquote {
+  border-left: 4px solid #ccc;
+  margin: 1em 0;
+  padding-left: 1em;
+  color: #555;
+  font-style: italic;
 }
