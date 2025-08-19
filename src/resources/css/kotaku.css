@@ -1,0 +1,82 @@
+/* 仅作用于主内容区域，避免全站污染：把 main 换成你页面里稳定的父容器选择器 */
+main h2 {
+  font-size: 1.75rem; /* 更大 */
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 1.5em 0 0.75em;
+  border-bottom: 2px solid #eee; /* 轻微分隔 */
+  padding-bottom: 0.3em;
+}
+
+main strong {
+  font-weight: 800; /* 更黑 */
+  color: #000;
+}
+
+/* 段落与列表的基础排版（可选但推荐） */
+main p {
+  line-height: 1.75;
+  margin: 1em 0;
+  color: #222;
+  font-size: 16px;
+}
+main ul,
+main ol {
+  margin: 0.75em 0 0.75em 1.25em;
+  line-height: 1.75;
+}
+main ul {
+  list-style: disc;
+}
+main ol {
+  list-style: decimal;
+}
+main li + li {
+  margin-top: 0.25em;
+}
+
+/* Quill 导出的代码块（你 HTML 里是 <pre class="ql-syntax"> ... </pre>） */
+main pre.ql-syntax {
+  background-color: #23241f;
+  color: #f8f8f2;
+  padding: 12px 14px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9rem;
+  margin: 1em 0;
+  /* 避免被外层奇怪的样式覆盖 */
+  white-space: pre; /* Quill 导出通常已是预格式文本 */
+}
+
+main pre.ql-syntax code {
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  padding: 0;
+}
+
+/* 图片整体容器 */
+div.embedded_image {
+  display: block;
+  margin: 1.5em auto;
+  text-align: center;
+}
+
+/* 图片本身 */
+div.embedded_image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px; /* 可选，让图片边角柔和一些 */
+  display: inline-block;
+}
+
+/* 图片下方的说明文字 */
+div.embedded_image > p {
+  color: #a0aec0; /* 灰色字体 */
+  font-family: Karla, sans-serif; /* 字体 */
+  font-size: 0.9rem;
+  margin-top: 0.5em;
+  text-align: center;
+  line-height: 1.4;
+}
