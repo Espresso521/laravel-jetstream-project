@@ -255,7 +255,7 @@ onBeforeUnmount(() => {
       <!-- 技能 -->
       <section class="mt-8 rounded-2xl bg-white/70 ring-1 ring-slate-200 p-6">
         <h3 class="text-lg font-semibold mb-4">得意な技術</h3>
-        <ul class="flex flex-wrap gap-2">
+        <ul class="flex flex-wrap gap-6">
           <li
             class="px-3 py-1 rounded-full text-sm bg-slate-100 text-slate-700 ring-1 ring-slate-200"
           >
