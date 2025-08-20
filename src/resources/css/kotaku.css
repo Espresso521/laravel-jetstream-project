@@ -177,9 +177,13 @@ main blockquote {
 }
 
 /* Quill embed 内部按钮样式 */
+.ql-embed-content {
+  text-align: center; /* 水平居中容器里的按钮 */
+}
+
 .ql-embed-content button {
-  display: inline-block;
-  padding: 0.4rem 0.9rem;
+  display: inline-block; /* 让按钮根据内容自适应宽度 */
+  padding: 10px; /* 四周留 10px 内边距 */
   margin: 0.3rem 0;
   font-size: 0.9rem;
   font-weight: 600;
@@ -197,4 +201,11 @@ main blockquote {
 
 .ql-embed-content button:active {
   background-color: #1e40af; /* 按下更深 */
+}
+
+.ql-embed-content video {
+  display: block;
+  height: 521px !important; /* 想要的高度 */
+  width: auto; /* 宽度按比例缩放 */
+  margin: 0 auto; /* 水平居中 */
 }
