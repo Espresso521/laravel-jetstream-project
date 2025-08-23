@@ -146,7 +146,7 @@ main blockquote {
 /* video：固定高度、等比缩放，居中显示 */
 .ql-embed-content video {
   display: block;
-  height: 521px; /* 你需要的高度 */
+  height: 521px !important; /* 你需要的高度 */
   width: auto; /* 按比例缩放宽度 */
   max-width: 100%; /* 窄屏不溢出 */
   margin: 0 auto;
