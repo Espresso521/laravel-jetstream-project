@@ -91,68 +91,106 @@ main blockquote {
   font-style: italic;
 }
 
-/* 外部嵌入内容卡片 */
+/* ===== Quill 外部嵌入 ===== */
+
+/* 容器：按内容收缩，水平居中；不再铺满整行 */
 .ql-embed-content {
-  display: block;
+  display: inline-flex; /* shrink-to-fit */
+  align-items: center;
+  justify-content: center;
+  gap: 0; /* 内部需要间距用内层自己加 */
   margin: 1.5rem 0;
-  background: #f9fafb; /* 浅灰背景 */
+  padding: 12px;
+  background: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  overflow: visible; /* 避免控件被裁剪 */
+  max-width: 100%;
+  text-align: center; /* 文字/按钮居中 */
 }
 
-/* 内部内容容器 */
+/* 内部盒子（你需要文字说明时用）： */
 .ql-embed-content .ql-embed-box {
   padding: 0.75rem;
   background: #fff;
   border-radius: 8px;
-  color: #1f2937; /* 默认文字颜色 gray-800 */
+  color: #1f2937;
   font-size: 0.95rem;
   line-height: 1.5;
 }
 
-/* 里面的文字标签 */
+/* 保证文字可见 */
 .ql-embed-content p,
 .ql-embed-content span,
 .ql-embed-content div {
-  color: #1f2937; /* 强制深色文字 */
+  color: #1f2937;
 }
 
-/* 链接样式 */
+/* 链接 */
 .ql-embed-content a {
-  color: #2563eb; /* 蓝色链接 */
+  color: #2563eb;
   text-decoration: underline;
 }
 
-/* iframe / video 等媒体 */
+/* 仅 iframe/embed/object 走 100% 规则；不要影响 video/audio */
 .ql-embed-content iframe,
 .ql-embed-content embed,
-.ql-embed-content object,
-.ql-embed-content video {
+.ql-embed-content object {
   width: 100%;
   height: 360px;
   border: none;
   border-radius: 6px;
 }
 
-/* caption 样式 */
-.ql-embed-content .ql-embed-caption,
-.ql-embed-content figcaption {
-  margin-top: 0.5rem;
-  color: #4b5563; /* 灰色 */
-  font-size: 0.85rem;
-  text-align: center;
-  font-style: italic;
+/* video：固定高度、等比缩放，居中显示 */
+.ql-embed-content video {
+  display: block;
+  height: 521px; /* 你需要的高度 */
+  width: auto; /* 按比例缩放宽度 */
+  max-width: 100%; /* 窄屏不溢出 */
+  margin: 0 auto;
+  border-radius: 6px;
 }
 
-/* hover 效果 */
+/* audio：确保可见且不被压扁，宽度随内容 */
+.ql-embed-content audio {
+  display: block;
+  width: auto; /* 不强制 100% */
+  max-width: 100%;
+  min-width: 260px; /* 防止在某些环境下被压到 0 宽 */
+  height: 32px; /* 确保控件有可见高度 */
+  margin: 0 auto;
+}
+
+/* 内部按钮（如果 embed 里放按钮） */
+.ql-embed-content button {
+  display: inline-block;
+  padding: 10px;
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #2563eb;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.ql-embed-content button:hover {
+  background-color: #1d4ed8;
+}
+.ql-embed-content button:active {
+  background-color: #1e40af;
+}
+
+/* hover 阴影 */
 .ql-embed-content:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   transition: box-shadow 0.2s ease;
 }
 
-/* 深色模式 */
+/* 深色模式：容器改为深蓝，但因为是 inline-flex，不会整行铺满 */
 @media (prefers-color-scheme: dark) {
   .ql-embed-content {
     background: #0f2e5b;
@@ -160,12 +198,12 @@ main blockquote {
   }
   .ql-embed-content .ql-embed-box {
     background: #111827;
-    color: #e5e7eb; /* 浅色文字 */
+    color: #e5e7eb;
   }
   .ql-embed-content p,
   .ql-embed-content span,
   .ql-embed-content div {
-    color: #e5e7eb; /* 保证可见 */
+    color: #e5e7eb;
   }
   .ql-embed-content a {
     color: #60a5fa;
@@ -174,38 +212,4 @@ main blockquote {
   .ql-embed-content figcaption {
     color: #9ca3af;
   }
-}
-
-/* Quill embed 内部按钮样式 */
-.ql-embed-content {
-  text-align: center; /* 水平居中容器里的按钮 */
-}
-
-.ql-embed-content button {
-  display: inline-block; /* 让按钮根据内容自适应宽度 */
-  padding: 10px; /* 四周留 10px 内边距 */
-  margin: 0.3rem 0;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #fff;
-  background-color: #2563eb; /* 蓝色背景 */
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.ql-embed-content button:hover {
-  background-color: #1d4ed8; /* hover 深蓝 */
-}
-
-.ql-embed-content button:active {
-  background-color: #1e40af; /* 按下更深 */
-}
-
-.ql-embed-content video {
-  display: block;
-  height: 521px !important; /* 想要的高度 */
-  width: auto; /* 宽度按比例缩放 */
-  margin: 0 auto; /* 水平居中 */
 }
