@@ -104,7 +104,7 @@ const rest = props.posts ?? [];
                   {{ featured.title }}
                 </h3>
               </Link>
-              <p class="mt-4 text-sm leading-6 text-slate-700 line-clamp-6">
+              <p class="mt-4 text-sm leading-6 text-slate-700 line-clamp-8">
                 {{ featured.summary }}
               </p>
             </div>
