@@ -1,9 +1,11 @@
+<!-- LittlestTokyo.vue -->
 <template>
   <div
     ref="wrap"
     :style="{
       width: '100%',
-      height: `${height}px`,
+      // 用 CSS 变量覆盖高度；没有变量时用 prop 的像素值
+      height: `var(--lt-height, ${height}px)`,
       background: '#bfe3dd',
       overflow: 'hidden',
     }"

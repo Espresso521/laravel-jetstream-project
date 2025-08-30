@@ -28,17 +28,16 @@ const rest = props.posts ?? [];
       <div
         class="relative rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-sm bg-[#E6F4F1]"
       >
-        <!-- 3D 模型 -->
-        <LittlestTokyo :height="240" class="hidden sm:block" />
-        <div class="sm:hidden h-36 bg-[#bfe3dd]"></div>
+        <!-- 3D 模型（手机更小高度，PC更大高度） -->
+        <LittlestTokyo class="[--lt-height:180px] sm:[--lt-height:240px]" />
 
         <!-- 底部信息条：左标题 / 右按钮 -->
         <div
-          class="absolute inset-x-0 bottom-0 flex items-center justify-between px-4 bg-white/70 backdrop-blur-sm border-t border-white/60"
+          class="absolute inset-x-0 bottom-0 flex items-center justify-between px-4 py-2 bg-white/70 backdrop-blur-sm border-t border-white/60"
         >
           <!-- 标题 -->
           <h1
-            class="text-lg sm:text-xl font-extrabold tracking-tight bg-gradient-to-r from-rose-500 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent"
+            class="text-base sm:text-lg font-extrabold tracking-tight bg-gradient-to-r from-rose-500 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent"
           >
             Kotakuのブログ
           </h1>
@@ -46,10 +45,10 @@ const rest = props.posts ?? [];
           <!-- aboutme 按钮 -->
           <Link
             href="/aboutme"
-            class="flex items-center justify-center w-9 h-9 transition"
+            class="flex items-center justify-center w-9 h-9 rounded-full hover:bg-slate-100 transition"
             aria-label="About me"
           >
-            <img :src="'/images/me.svg'" alt="" class="h-8 w-8" />
+            <img :src="'/images/me.svg'" alt="" class="h-7 w-7" />
           </Link>
         </div>
       </div>
