@@ -33,7 +33,7 @@ const rest = props.posts ?? [];
 
         <!-- 底部信息条：左标题 / 右按钮 -->
         <div
-          class="absolute inset-x-0 bottom-0 flex items-center justify-between px-4 py-2 bg-white/70 backdrop-blur-sm border-t border-white/60"
+          class="absolute inset-x-0 bottom-0 flex items-center justify-between px-4 bg-white/70 backdrop-blur-sm border-t border-white/60"
         >
           <!-- 标题 -->
           <h1
