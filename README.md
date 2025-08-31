@@ -21,7 +21,7 @@
 ![PC Screenshot](./docs/screenshots/pc.png)
 
 ### Mobile 端
-![Mobile Screenshot](./docs/screenshots/mobile.jpg)
+<img src="./docs/screenshots/mobile.jpg" alt="Mobile Screenshot" width="50%"/>
 
 ---
 
@@ -36,7 +36,7 @@
 ## 🚀 快速开始
 
 ### 环境要求
-- PHP >= 8.1
+- PHP >= 8.3
 - Composer
 - Node.js >= 18
 - MySQL
