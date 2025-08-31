@@ -1,17 +1,17 @@
 # Kotaku Blog
 
-📖 **Kotaku のブログ**  
-一个基于 **Laravel + Canvas + Vue3** 开发的个人博客系统。  
-支持响应式布局，提供 **PC 端** 和 **移动端** 的优雅阅读体验。  
+📖 **Kotaku のブログ**
+一个基于 **Laravel + Canvas + Vue3** 开发的个人博客系统。
+支持响应式布局，提供 **PC 端** 和 **移动端** 的优雅阅读体验。
 
 ---
 
 ## ✨ 功能特色
-- 使用 [Laravel](https://laravel.com/) 作为后端框架  
-- 使用 [Canvas](https://cnvs.io/) 作为内容管理基础  
-- 前端采用 [Vue 3](https://vuejs.org/) + [Inertia.js](https://inertiajs.com/) 构建  
-- 集成 Tailwind CSS，轻量美观的 UI 设计  
-- 响应式布局，兼容 PC / Mobile  
+- 使用 [Laravel](https://laravel.com/) 作为后端框架
+- 使用 [Canvas](https://cnvs.io/) 作为内容管理基础
+- 前端采用 [Vue 3](https://vuejs.org/) + [Inertia.js](https://inertiajs.com/) 构建
+- 集成 Tailwind CSS，轻量美观的 UI 设计
+- 响应式布局，兼容 PC / Mobile
 
 ---
 
@@ -21,7 +21,7 @@
 ![PC Screenshot](./docs/screenshots/pc.png)
 
 ### Mobile 端
-![Mobile Screenshot](./docs/screenshots/mobile.png)
+![Mobile Screenshot](./docs/screenshots/mobile.jpg)
 
 ---
 
